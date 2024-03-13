@@ -1,0 +1,11 @@
+import sqlite3
+conn = sqlite3.connect ('Inventory.db')
+cursor = conn.cursor ()
+#cursor.execute ('SELECT Authors.aID,Authors.AuthorName,Books.BookName FROM Authors INNER JOIN Books ON Authors.aID = Books.aID LIMIT 3')
+cursor.execute ('SELECT COUNT(aID),aID FROM Books GROUP BY aID')
+data = cursor.fetchall ()
+print (data)
+cursor.execute ('UPDATE Books SET PageCount = 400')
+conn.commit ()
+cursor.close ()
+conn.close ()
